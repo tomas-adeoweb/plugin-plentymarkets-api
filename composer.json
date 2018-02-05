@@ -4,7 +4,7 @@
   "description": "Findologic api plugin for plentymarkets system",
   "require":
   {
-    "php": "^5.5 || ^7.0",
+    "php": "^7.0",
     "plentymarkets/plugin-interface": "dev-beta7"
   }
 }
