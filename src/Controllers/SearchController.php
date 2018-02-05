@@ -15,7 +15,7 @@ class SearchController extends Controller
      * @param Twig $twig
      * @return string
      */
-    public function sayHello(Twig $twig): string
+    public function search(Twig $twig): string
     {
         return $twig->render('Findologic::content.search');
     }
