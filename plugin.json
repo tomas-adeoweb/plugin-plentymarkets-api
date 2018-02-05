@@ -4,5 +4,5 @@
   "namespace":"Findologic",
   "author":"AdeoWeb",
   "type":"template",
-  "serviceProvider":"Findologic\\Providers\\FindologicdServiceProvider"
+  "serviceProvider":"Findologic\\Providers\\FindologicServiceProvider"
 }
