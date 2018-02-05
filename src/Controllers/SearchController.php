@@ -29,6 +29,12 @@ class SearchController extends Controller
      */
     public function search(Request $request, Twig $twig): string
     {
-        return $twig->render('Findologic::content.search', ['results' => $this->searchService->getSearchResults($request)]);
+        $results = $this->searchService->getSearchResults($request);
+
+        if (!$results) {
+            //TODO: no results page
+        }
+
+        return $twig->render('Findologic::content.search', ['results' => $results]);
     }
 }
