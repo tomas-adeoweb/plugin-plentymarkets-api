@@ -1,0 +1,9 @@
+{
+  "name": "findologic/plugin-plentymarkets-api",
+  "type": "project",
+  "description": "Findologic api plugin for plentymarkets system",
+  "require":
+  {
+    "php": "^5.5 || ^7.0"
+  }
+}

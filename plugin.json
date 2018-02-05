@@ -1,0 +1,8 @@
+{
+  "name":"Findologic",
+  "description":"Findologic search plugin",
+  "namespace":"Findologic",
+  "author":"AdeoWeb",
+  "type":"template",
+  "serviceProvider":"Findologic\\Providers\\FindologicdServiceProvider"
+}

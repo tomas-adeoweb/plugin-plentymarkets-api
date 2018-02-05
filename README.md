@@ -1,0 +1,1 @@
+# Findologic Plentymarkets api plugin
