@@ -12,7 +12,7 @@ class RequestBuilder
 {
     public function build(RequestData $request)
     {
-        $request = new Request();
+        $request = pluginApp(Request::class);
 
         return $request;
     }

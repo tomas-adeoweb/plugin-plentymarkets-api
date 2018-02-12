@@ -27,7 +27,7 @@ class ResponseParser
      */
     public function parse($responseData)
     {
-        $response = new Response();
+        $response = pluginApp(Response::class);
 
         try {
             $data = simplexml_load_string($responseData);

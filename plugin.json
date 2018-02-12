@@ -4,6 +4,6 @@
   "namespace":"Findologic",
   "author":"AdeoWeb",
   "type":"template",
-  "version": "0.0.001",
+  "version": "0.0.002",
   "serviceProvider":"Findologic\\Providers\\FindologicServiceProvider"
 }
