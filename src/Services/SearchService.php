@@ -37,10 +37,20 @@ class SearchService implements SearchServiceInterface
         $this->responseParser = $responseParser;
     }
 
+    public function handleSearchQuery($searchQuery)
+    {
+        // TODO: Implement handleSearchQuery() method.
+    }
+
+    public function handleSearchOptions($searchOptions)
+    {
+        // TODO: Implement handleSearchOptions() method.
+    }
+
     /**
      * @inheritdoc
      */
-    public function getSearchResults($request)
+    protected function getSearchResults($request)
     {
         $responseData = $this->client->call($this->requestBuilder->build($request));
 

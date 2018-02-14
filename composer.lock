@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "bab210c483dd5463d31928a6eb158406",
+    "content-hash": "e63cd55fa09454a00d1c15e067720066",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -794,17 +794,27 @@
             "time": "2017-03-13T16:22:52+00:00"
         },
         {
+            "name": "plentymarkets-local/plugin-io",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/plentymarkets/plugin-io",
+                "reference": "origin/stable"
+            },
+            "type": "library"
+        },
+        {
             "name": "plentymarkets/plugin-interface",
             "version": "dev-beta7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/plentymarkets/plugin-interface.git",
-                "reference": "94958898e543788a4992dee80b742cf5b80eb3c0"
+                "reference": "a79421984df1269aa45ee984243530a57a3d3c26"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/plentymarkets/plugin-interface/zipball/94958898e543788a4992dee80b742cf5b80eb3c0",
-                "reference": "94958898e543788a4992dee80b742cf5b80eb3c0",
+                "url": "https://api.github.com/repos/plentymarkets/plugin-interface/zipball/a79421984df1269aa45ee984243530a57a3d3c26",
+                "reference": "a79421984df1269aa45ee984243530a57a3d3c26",
                 "shasum": ""
             },
             "require": {
@@ -817,7 +827,7 @@
                 "AGPL-3.0"
             ],
             "description": "Interface for plentymarkets plugin development with PHP 7",
-            "time": "2018-02-09 08:37:40"
+            "time": "2018-02-13 16:45:01"
         },
         {
             "name": "psr/log",

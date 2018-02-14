@@ -11,8 +11,12 @@ use Plenty\Plugin\Http\Request;
 interface SearchServiceInterface
 {
     /**
-     * @param Request $request
-     * @return array
+     * @param $searchOptions
      */
-    public function getSearchResults($request);
+    public function handleSearchOptions($searchOptions);
+
+    /**
+     * @param $searchQuery
+     */
+    public function handleSearchQuery($searchQuery);
 }
