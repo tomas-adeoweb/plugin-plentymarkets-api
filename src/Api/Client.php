@@ -1,8 +1,8 @@
 <?php
 
-namespace Findologic\Api;
+namespace Findologic\PluginPlentymarketsApi\Api;
 
-use Findologic\Api\Request\Request;
+use Findologic\PluginPlentymarketsApi\Api\Request\Request;
 use Plenty\Plugin\ConfigRepository;
 
 /**

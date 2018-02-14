@@ -1,6 +1,6 @@
 <?php
 
-namespace Findologic\Api\Request;
+namespace Findologic\PluginPlentymarketsApi\Api\Request;
 
 /**
  * Class Request

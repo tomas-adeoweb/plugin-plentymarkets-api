@@ -1,6 +1,6 @@
 <?php
 
-namespace Findologic\Services;
+namespace Findologic\PluginPlentymarketsApi\Services;
 
 use Plenty\Plugin\Http\Request;
 
@@ -12,11 +12,13 @@ interface SearchServiceInterface
 {
     /**
      * @param $searchOptions
+     * @param $request
      */
-    public function handleSearchOptions($searchOptions);
+    public function handleSearchOptions($searchOptions, $request);
 
     /**
-     * @param $searchQuery
+     * @param $searchOptions
+     * @param $request
      */
-    public function handleSearchQuery($searchQuery);
+    public function handleSearchQuery($searchQuery, $request);
 }

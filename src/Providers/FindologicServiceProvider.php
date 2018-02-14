@@ -1,11 +1,12 @@
 <?php
 
-namespace Findologic\Providers;
+namespace Findologic\PluginPlentymarketsApi\Providers;
 
-use Findologic\Services\SearchService;
+use Findologic\PluginPlentymarketsApi\Services\SearchService;
 use Plenty\Plugin\ConfigRepository;
 use Plenty\Plugin\ServiceProvider;
 use Plenty\Plugin\Events\Dispatcher;
+use Plenty\Plugin\Http\Request;
 
 /**
  * Class FindologicServiceProvider
@@ -15,24 +16,30 @@ class FindologicServiceProvider extends ServiceProvider
 {
     /**
      * @param Dispatcher $eventDispatcher
+     * @param ConfigRepository $configRepository
+     * @param SearchService $searchService
      */
-    public function boot(Dispatcher $eventDispatcher, ConfigRepository $configRepository, SearchService $searchService)
-    {
+    public function boot(
+        ConfigRepository $configRepository,
+        Dispatcher $eventDispatcher,
+        Request $request,
+        SearchService $searchService
+    ) {
         if (!$configRepository->get('findologic.enabled', false)) {
             return;
         }
 
         $eventDispatcher->listen(
             'IO.Search.Options',
-            function(\IO\Helper\SearchOptions $searchOptions) use ($searchService) {
-                $searchService->handleSearchOptions($searchOptions);
+            function(\IO\Helper\SearchOptions $searchOptions) use ($searchService, $request) {
+                $searchService->handleSearchOptions($searchOptions, $request);
             }
         );
 
         $eventDispatcher->listen(
             'IO.Search.Query',
-            function(\IO\Helper\SearchQuery $searchQuery) use ($searchService) {
-                $searchService->handleSearchQuery($searchQuery);
+            function(\IO\Helper\SearchQuery $searchQuery) use ($searchService, $request) {
+                $searchService->handleSearchQuery($searchQuery, $request);
             }
         );
     }

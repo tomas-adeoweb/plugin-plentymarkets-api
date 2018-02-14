@@ -1,8 +1,6 @@
 <?php
 
-namespace Findologic\Api\Request;
-
-use Plenty\Plugin\Http\Request as RequestData;
+namespace Findologic\PluginPlentymarketsApi\Api\Request;
 
 /**
  * Class RequestBuilder
@@ -10,7 +8,7 @@ use Plenty\Plugin\Http\Request as RequestData;
  */
 class RequestBuilder
 {
-    public function build(RequestData $request)
+    public function build($request, $searchQuery = null)
     {
         $request = pluginApp(Request::class);
 

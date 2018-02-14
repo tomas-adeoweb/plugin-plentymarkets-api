@@ -1,10 +1,10 @@
 <?php
 
-namespace Findologic\Services;
+namespace Findologic\PluginPlentymarketsApi\Services;
 
-use Findologic\Api\Request\RequestBuilder;
-use Findologic\Api\Response\ResponseParser;
-use Findologic\Api\Client;
+use Findologic\PluginPlentymarketsApi\Api\Request\RequestBuilder;
+use Findologic\PluginPlentymarketsApi\Api\Response\ResponseParser;
+use Findologic\PluginPlentymarketsApi\Api\Client;
 
 /**
  * Class SearchService
@@ -37,23 +37,15 @@ class SearchService implements SearchServiceInterface
         $this->responseParser = $responseParser;
     }
 
-    public function handleSearchQuery($searchQuery)
+    public function handleSearchQuery($searchQuery, $request)
     {
-        // TODO: Implement handleSearchQuery() method.
+        $apiRequest = $this->requestBuilder->build($request, $searchQuery);
+        $results = $this->responseParser->parse($this->client->call($apiRequest));
+        $searchQuery->setSearchResults($results->getProductsIds());
     }
 
-    public function handleSearchOptions($searchOptions)
+    public function handleSearchOptions($searchOptions, $request)
     {
         // TODO: Implement handleSearchOptions() method.
-    }
-
-    /**
-     * @inheritdoc
-     */
-    protected function getSearchResults($request)
-    {
-        $responseData = $this->client->call($this->requestBuilder->build($request));
-
-        return $this->responseParser->parse($responseData);
     }
 }
