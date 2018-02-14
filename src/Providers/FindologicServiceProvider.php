@@ -14,14 +14,6 @@ use Plenty\Plugin\Events\Dispatcher;
 class FindologicServiceProvider extends ServiceProvider
 {
     /**
-     * Register the service provider.
-     */
-    public function register()
-    {
-        $this->getApplication()->register(FindologicRouteServiceProvider::class);
-    }
-
-    /**
      * @param Dispatcher $eventDispatcher
      */
     public function boot(Dispatcher $eventDispatcher, ConfigRepository $configRepository, SearchService $searchService)
