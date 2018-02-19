@@ -12,7 +12,7 @@
     "phpunit/phpunit": "~5.6"
   },
   "repositories": {
-    "yadif": {
+    "plentymarkets-local": {
       "type": "package",
       "package": {
         "name": "plentymarkets-local/plugin-io",

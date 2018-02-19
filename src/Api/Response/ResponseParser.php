@@ -14,12 +14,12 @@ class ResponseParser
     /**
      * @var \Plenty\Log\Contracts\LoggerContract
      */
-    /*    protected $logger;
+    protected $logger;
 
-        public function __construct(LoggerFactory $loggerFactory)
-        {
-            $this->logger = $loggerFactory->getLogger(Plugin::PLUGIN_NAMESPACE, Plugin::PLUGIN_IDENTIFIER);
-        }*/
+    public function __construct(LoggerFactory $loggerFactory)
+    {
+        $this->logger = $loggerFactory->getLogger(Plugin::PLUGIN_NAMESPACE, Plugin::PLUGIN_IDENTIFIER);
+    }
 
     /**
      * @param $responseData
@@ -27,11 +27,13 @@ class ResponseParser
      */
     public function parse($responseData)
     {
-        $response = new Response();
-        //$response = pluginApp(Response::class);
+        /**
+         * @var Response $response
+         */
+        $response = pluginApp(Response::class);
 
         try {
-            $data = simplexml_load_string($responseData);
+            $data = $this->loadXml($responseData);
             $response->setData(Response::DATA_SERVERS, $this->parseServers($data));
             $response->setData(Response::DATA_QUERY, $this->parseQuery($data));
             $response->setData(Response::DATA_LANDING_PAGE, $this->parseLandingPage($data));
@@ -40,10 +42,20 @@ class ResponseParser
             $response->setData(Response::DATA_PRODUCTS, $this->parseProducts($data));
             $response->setData(Response::DATA_FILTERS, $this->parseFilters($data));
         } catch (\Exception $e) {
-            //TODO: logging
+            $this->logger->warning('Could not parse response from server.');
+            $this->logger->logException($e);
         }
 
         return $response;
+    }
+
+    /**
+     * @param string $xmlString
+     * @return \SimpleXMLElement
+     */
+    public function loadXml($xmlString)
+    {
+        return simplexml_load_string($xmlString);
     }
 
     /**
@@ -75,7 +87,7 @@ class ResponseParser
             $query['searchedWordCount'] = $data->query->searchWordCount->__toString();
             $query['foundWordCount'] = $data->query->foundWordCount->__toString();
 
-            //TODO: check limit stucture in valid response as it is missing data in example response
+            //TODO: check limit structure in valid response as it is missing data in example response
             $limit = $data->query->limit;
         }
 
@@ -91,7 +103,7 @@ class ResponseParser
         $landingPage = [];
 
         if (!empty($data->landingPage) ) {
-            $landingPage['link'] = $data->landingPage->attributes()->link[0];
+            $landingPage['link'] = $data->landingPage->attributes()->link->__toString();
         }
 
         return $landingPage;

@@ -8,14 +8,29 @@ namespace Findologic\PluginPlentymarketsApi\Api\Request;
  */
 class Request
 {
+    /**
+     * Request url
+     *
+     * @var string
+     */
     protected $url;
 
+    /**
+     * Request headers
+     *
+     * @var array
+     */
     protected $headers = [];
 
+    /**
+     * Request parameters
+     *
+     * @var array
+     */
     protected $params = [];
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getUrl()
     {
@@ -23,7 +38,7 @@ class Request
     }
 
     /**
-     * @param mixed $url
+     * @param string $url
      * @return Request
      */
     public function setUrl($url)
@@ -34,7 +49,7 @@ class Request
     }
 
     /**
-     * @return mixed
+     * @return array
      */
     public function getHeaders()
     {
@@ -42,7 +57,7 @@ class Request
     }
 
     /**
-     * @param mixed $headers
+     * @param array $headers
      * @return Request
      */
     public function setHeaders($headers)
@@ -53,7 +68,19 @@ class Request
     }
 
     /**
-     * @return mixed
+     * @param string $key
+     * @param mixed $value
+     * @return $this
+     */
+    public function setHeader($key, $value)
+    {
+        $this->headers[$key] = $value;
+
+        return $this;
+    }
+
+    /**
+     * @return array
      */
     public function getParams()
     {
@@ -61,12 +88,24 @@ class Request
     }
 
     /**
-     * @param mixed $params
+     * @param array $params
      * @return Request
      */
     public function setParams($params)
     {
         $this->params = $params;
+
+        return $this;
+    }
+
+    /**
+     * @param string $key
+     * @param mixed $value
+     * @return $this
+     */
+    public function setParam($key, $value)
+    {
+        $this->params[$key] = $value;
 
         return $this;
     }
