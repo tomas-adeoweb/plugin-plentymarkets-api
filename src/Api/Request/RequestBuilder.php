@@ -38,7 +38,7 @@ class RequestBuilder
     /**
      * @param HttpRequest $request
      * @param null $searchQuery
-     * @return mixed|null
+     * @return bool|Request
      */
     public function build($request, $searchQuery = null)
     {
@@ -50,6 +50,37 @@ class RequestBuilder
         $this->request = false;
 
         return $request;
+    }
+
+    /**
+     * @return bool|Request
+     */
+    public function buildAliveRequest()
+    {
+        $this->createRequestObject();
+
+        $request = $this->request;
+        $request->setUrl($this->getCleanShopUrl('alive'))->setParam('shopkey', $this->configRepository->get(Plugin::CONFIG_SHOPKEY));
+        $this->request = false;
+
+        return $request;
+    }
+
+    /**
+     * @param string $type
+     * @return string
+     */
+    public function getCleanShopUrl($type = 'request')
+    {
+        $url = ltrim($this->configRepository->get(Plugin::CONFIG_URL), '/') . '/';
+
+        if ($type == 'alive') {
+            $url .= 'alivetest.php';
+        } else {
+            $url .= 'index.php';
+        }
+
+        return $url;
     }
 
     protected function createRequestObject()
@@ -64,7 +95,7 @@ class RequestBuilder
      */
     protected function setDefaultValues()
     {
-        $this->request->setUrl($this->configRepository->get(Plugin::CONFIG_URL));
+        $this->request->setUrl($this->getCleanShopUrl());
         $this->request->setParam('outputAdapter', Plugin::API_OUTPUT_ADAPTER);
         $this->request->setParam('shopkey', $this->configRepository->get(Plugin::CONFIG_SHOPKEY));
     }
