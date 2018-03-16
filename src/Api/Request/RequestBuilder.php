@@ -78,5 +78,14 @@ class RequestBuilder
         if ($searchQuery->searchString) {
             $this->request->setParam('query', $searchQuery->searchString);
         }
+
+        parse_str($request->getUri(), $parameters);
+
+        if (isset($parameters[Plugin::API_ATTRIBUTES_PARAMETER])) {
+            $attributes = $parameters[Plugin::API_ATTRIBUTES_PARAMETER];
+            foreach ($attributes as $key => $value) {
+                $this->request->setAttributeParam($key, $value);
+            }
+        }
     }
 }

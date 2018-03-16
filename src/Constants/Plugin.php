@@ -12,6 +12,7 @@ class Plugin
     const PLUGIN_IDENTIFIER = 'findologic-plugin-api';
 
     const API_OUTPUT_ADAPTER = 'XML_2.0';
+    const API_ATTRIBUTES_PARAMETER = 'attrib';
 
     const CONFIG_ENABLED = 'findologic.enabled';
     const CONFIG_URL = 'findologic.url';
