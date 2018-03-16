@@ -134,11 +134,11 @@ class Request
      */
     public function setAttributeParam($key, $value)
     {
-        if (!isset($this->params[Plugin::API_ATTRIBUTES_PARAMETER])) {
-            $this->params[Plugin::API_ATTRIBUTES_PARAMETER] = [];
+        if (!isset($this->params[Plugin::API_PARAMETER_ATTRIBUTES])) {
+            $this->params[Plugin::API_PARAMETER_ATTRIBUTES] = [];
         }
 
-        $this->params[Plugin::API_ATTRIBUTES_PARAMETER][$key] = $value;
+        $this->params[Plugin::API_PARAMETER_ATTRIBUTES][$key] = $value;
 
         return $this;
     }

@@ -81,11 +81,27 @@ class RequestBuilder
 
         parse_str($request->getUri(), $parameters);
 
-        if (isset($parameters[Plugin::API_ATTRIBUTES_PARAMETER])) {
-            $attributes = $parameters[Plugin::API_ATTRIBUTES_PARAMETER];
+        if (isset($parameters[Plugin::API_PARAMETER_ATTRIBUTES])) {
+            $attributes = $parameters[Plugin::API_PARAMETER_ATTRIBUTES];
             foreach ($attributes as $key => $value) {
                 $this->request->setAttributeParam($key, $value);
             }
+        }
+
+        if (isset($parameters[Plugin::API_PARAMETER_SORT_ORDER]) && in_array($parameters[Plugin::API_PARAMETER_SORT_ORDER], Plugin::API_SORT_ORDER_AVAILABLE_OPTIONS)) {
+            $this->request->setParam(Plugin::API_PARAMETER_SORT_ORDER, $parameters[Plugin::API_PARAMETER_SORT_ORDER]);
+        }
+
+        $pageSize = $parameters[Plugin::API_PARAMETER_PAGINATION_ITEMS_PER_PAGE] ?? 0;
+
+        if (intval($pageSize) > 0) {
+            $this->request->setParam(Plugin::API_PARAMETER_PAGINATION_ITEMS_PER_PAGE, $pageSize);
+        }
+
+        $paginationStart = $parameters[Plugin::API_PARAMETER_PAGINATION_START] ?? 0;
+
+        if (intval($paginationStart) > 0) {
+            $this->request->setParam(Plugin::API_PARAMETER_PAGINATION_START, $paginationStart);
         }
     }
 }
