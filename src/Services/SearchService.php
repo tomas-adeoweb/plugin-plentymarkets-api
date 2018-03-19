@@ -9,6 +9,7 @@ use Findologic\PluginPlentymarketsApi\Api\Client;
 use Findologic\PluginPlentymarketsApi\Constants\Plugin;
 use Findologic\PluginPlentymarketsApi\Exception\AliveException;
 use Ceres\Helper\ExternalSearch;
+use Plenty\Log\Contracts\LoggerContract;
 use Plenty\Plugin\Http\Request as HttpRequest;
 use Plenty\Plugin\Log\LoggerFactory;
 
@@ -34,7 +35,7 @@ class SearchService implements SearchServiceInterface
     protected $responseParser;
 
     /**
-     * @var \Plenty\Log\Contracts\LoggerContract
+     * @var LoggerContract
      */
     protected $logger;
 
@@ -77,6 +78,9 @@ class SearchService implements SearchServiceInterface
         // TODO: Implement handleSearchOptions() method.
     }
 
+    /**
+     * @throws AliveException
+     */
     protected function aliveTest()
     {
         $request = $this->requestBuilder->buildAliveRequest();
