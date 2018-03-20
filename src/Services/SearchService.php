@@ -64,7 +64,11 @@ class SearchService implements SearchServiceInterface
             $results = $this->responseParser->parse($this->client->call($apiRequest));
             $productsIds = $results->getProductsIds();
 
-            $searchQuery->setResults($productsIds);
+            if (!empty($productsIds) && is_array($productsIds)) {
+                $searchQuery->setResults($productsIds);
+            }
+
+            //TODO: how to handle no results ?
         } catch (AliveException $e) {
             $this->logger->warning('Findologic server did not responded to alive request.');
         } catch (\Exception $e) {
