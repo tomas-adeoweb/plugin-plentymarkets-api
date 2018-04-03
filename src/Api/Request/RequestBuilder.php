@@ -114,7 +114,7 @@ class RequestBuilder
             $request->setParam('query', $searchQuery->searchString);
         }
 
-        $parameters = $this->parseUrl($httpRequest->getUri());
+        $parameters = $httpRequest->all();
 
         if (isset($parameters[Plugin::API_PARAMETER_ATTRIBUTES])) {
             $attributes = $parameters[Plugin::API_PARAMETER_ATTRIBUTES];
@@ -130,42 +130,6 @@ class RequestBuilder
         $request = $this->setPagination($request, $parameters);
 
         return $request;
-    }
-
-    /**
-     * @param string $url
-     * @return array
-     */
-    public function parseUrl($url)
-    {
-        $parameters = [];
-
-        // find the pairs "name=value"
-        $pairs = explode('&', $url);
-        $toEvaluate = '';
-
-        foreach ($pairs as $pair) {
-            list($name, $value) = explode('=', $pair, 2);
-            $name = urldecode($name);
-            $value = urldecode($value);
-
-            if (!is_numeric($value)) {
-                $value = '"' . str_replace('"', '\"', $value) . '"';
-            }
-
-            if (strpos($name, '[') !== false) {
-                $name = preg_replace('|\[|', '][', $name, 1);
-                $name = str_replace(array('\'', '[', ']'), array('\\\'', '[\'', '\']'), $name);
-                $toEvaluate .= '$parameters[\'' . $name . ' = ' . $value . '; ';
-            } else {
-                $name = str_replace('\'', '\\\'', $name);
-                $toEvaluate .= '$parameters[\'' . $name . '\'] = ' . $value . '; ';
-            }
-        }
-
-        eval($toEvaluate);
-
-        return $parameters;
     }
 
     /**
