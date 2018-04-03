@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "2245d88d4516f773af23c9eb1568126b",
+    "content-hash": "b7c4b80ee58639f4e849bcb7f94eb025",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -973,7 +973,7 @@
         },
         {
             "name": "plentymarkets-ceres/plugin-ceres",
-            "version": "1.0.0",
+            "version": "1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/plentymarkets/plugin-ceres",
@@ -997,12 +997,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/plentymarkets/plugin-interface.git",
-                "reference": "6f7252f77b75052517ac1d055bbf2b0d5e49e4cb"
+                "reference": "f678a3fb8d2e556339cad93b05b0478d203fd3bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/plentymarkets/plugin-interface/zipball/6f7252f77b75052517ac1d055bbf2b0d5e49e4cb",
-                "reference": "6f7252f77b75052517ac1d055bbf2b0d5e49e4cb",
+                "url": "https://api.github.com/repos/plentymarkets/plugin-interface/zipball/f678a3fb8d2e556339cad93b05b0478d203fd3bf",
+                "reference": "f678a3fb8d2e556339cad93b05b0478d203fd3bf",
                 "shasum": ""
             },
             "require": {
@@ -1015,7 +1015,7 @@
                 "AGPL-3.0"
             ],
             "description": "Interface for plentymarkets plugin development with PHP 7",
-            "time": "2018-03-27 11:33:03"
+            "time": "2018-03-29 12:08:13"
         },
         {
             "name": "psr/log",
@@ -1309,7 +1309,7 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v3.4.6",
+            "version": "v3.4.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",

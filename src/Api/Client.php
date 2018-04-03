@@ -4,6 +4,7 @@ namespace Findologic\PluginPlentymarketsApi\Api;
 
 use Findologic\PluginPlentymarketsApi\Constants\Plugin;
 use Findologic\PluginPlentymarketsApi\Api\Request\Request;
+use Plenty\Modules\Plugin\Libs\Contracts\LibraryCallContract;
 use Plenty\Plugin\Log\LoggerFactory;
 use HTTP_Request2;
 
@@ -22,42 +23,36 @@ class Client
      */
     protected $logger;
 
-    public function __construct(LoggerFactory $loggerFactory)
+    /**
+     * @var LibraryCallContract
+     */
+    protected $libraryCallContract;
+
+    public function __construct(LoggerFactory $loggerFactory, LibraryCallContract $libraryCallContract)
     {
         $this->logger = $loggerFactory->getLogger(Plugin::PLUGIN_NAMESPACE, Plugin::PLUGIN_IDENTIFIER);
+        $this->libraryCallContract = $libraryCallContract;
     }
 
     /**
      * @param Request $request
-     * @return bool|mixed
+     * @return string|bool
      */
     public function call(Request $request)
     {
         $response = false;
 
         try {
-            $httpRequest = $this->createHttpRequest($request);
-            $response = $httpRequest->send();
-            $response = $response->getBody();
+            $response = $this->libraryCallContract->call(
+                'Findologic::http_library',
+                ['request' => $request]
+            );
         } catch (\Exception $e) {
             $this->logger->warning('Exception while handling search query.');
             $this->logger->logException($e);
             return $response;
         }
 
-        return $response;
-    }
-
-    public function createHttpRequest(Request $request)
-    {
-        /** @var HTTP_Request2 $httpRequest */
-        $httpRequest = pluginApp(HTTP_Request2::class);
-        $httpRequest->setUrl($request->getRequestUrl());
-        $httpRequest->setAdapter('curl');
-
-        $httpRequest->setConfig('connect_timeout', $request->getConfiguration(Plugin::API_CONFIGURATION_KEY_CONNECTION_TIME_OUT) ?? self::DEFAULT_CONNECTION_TIME_OUT);
-        $httpRequest->setConfig('timeout',$request->getConfiguration(Plugin::API_CONFIGURATION_KEY_TIME_OUT) ?? self::DEFAULT_CONNECTION_TIME_OUT);
-
-        return $httpRequest;
+        return (string)$response;
     }
 }

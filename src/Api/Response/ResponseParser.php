@@ -29,7 +29,7 @@ class ResponseParser
     }
 
     /**
-     * @param $responseData
+     * @param string $responseData
      * @return Response
      */
     public function parse($responseData)

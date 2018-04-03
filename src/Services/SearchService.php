@@ -52,12 +52,14 @@ class SearchService implements SearchServiceInterface
     }
 
     /**
-     * @param ExternalSearch $searchQuery
+     * @param $searchQuery
      * @param HttpRequest $request
      */
     public function handleSearchQuery($searchQuery, $request)
     {
         try {
+            $this->logger->warning('Use findologic search.');
+
             $this->aliveTest();
 
             $apiRequest = $this->requestBuilder->build($request, $searchQuery);
