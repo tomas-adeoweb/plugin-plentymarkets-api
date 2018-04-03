@@ -50,7 +50,9 @@ class Client
 
     public function createHttpRequest(Request $request)
     {
-        $httpRequest =  new HTTP_Request2($request->getRequestUrl());
+        /** @var HTTP_Request2 $httpRequest */
+        $httpRequest = pluginApp(HTTP_Request2::class);
+        $httpRequest->setUrl($request->getRequestUrl());
         $httpRequest->setAdapter('curl');
 
         $httpRequest->setConfig('connect_timeout', $request->getConfiguration(Plugin::API_CONFIGURATION_KEY_CONNECTION_TIME_OUT) ?? self::DEFAULT_CONNECTION_TIME_OUT);
