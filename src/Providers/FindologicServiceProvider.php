@@ -9,8 +9,6 @@ use Ceres\Helper\ExternalSearch;
 use Plenty\Plugin\ConfigRepository;
 use Plenty\Plugin\Events\Dispatcher;
 use Plenty\Plugin\Http\Request;
-use Plenty\Plugin\Log\LoggerFactory;
-use Plenty\Log\Contracts\LoggerContract;
 use Plenty\Plugin\ServiceProvider;
 
 /**
@@ -19,17 +17,6 @@ use Plenty\Plugin\ServiceProvider;
  */
 class FindologicServiceProvider extends ServiceProvider
 {
-    /**
-     * @var LoggerContract
-     */
-    protected $logger;
-
-    public function __construct(
-        LoggerFactory $loggerFactory
-    ) {
-        $this->logger = $loggerFactory->getLogger(Plugin::PLUGIN_NAMESPACE, Plugin::PLUGIN_IDENTIFIER);
-    }
-
     /**
      * @param Dispatcher $eventDispatcher
      * @param ConfigRepository $configRepository
@@ -41,10 +28,9 @@ class FindologicServiceProvider extends ServiceProvider
         Request $request,
         SearchService $searchService
     ) {
-        if (!$configRepository->get('findologic.enabled', false)) {
+/*        if (!$configRepository->get('findologic.enabled', false)) {
             return;
-        }
-
+        }*/
         $eventDispatcher->listen(
             'Ceres.Search.Options',
             function(ExternalSearchOptions $searchOptions) use ($searchService, $request) {

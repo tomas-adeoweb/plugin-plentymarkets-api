@@ -9,7 +9,7 @@ use Findologic\PluginPlentymarketsApi\Constants\Plugin;
 use Findologic\PluginPlentymarketsApi\Exception\AliveException;
 use Plenty\Log\Contracts\LoggerContract;
 use Plenty\Plugin\Http\Request as HttpRequest;
-use Plenty\Plugin\Log\LoggerFactory;
+use Plenty\Plugin\Log\Loggable;
 
 /**
  * Class SearchService
@@ -17,6 +17,8 @@ use Plenty\Plugin\Log\LoggerFactory;
  */
 class SearchService implements SearchServiceInterface
 {
+    use Loggable;
+
     /**
      * @var Client
      */
@@ -40,13 +42,12 @@ class SearchService implements SearchServiceInterface
     public function __construct(
         Client $client,
         RequestBuilder $requestBuilder,
-        ResponseParser $responseParser,
-        LoggerFactory $loggerFactory
+        ResponseParser $responseParser
     ) {
         $this->client = $client;
         $this->requestBuilder = $requestBuilder;
         $this->responseParser = $responseParser;
-        $this->logger = $loggerFactory->getLogger(Plugin::PLUGIN_NAMESPACE, Plugin::PLUGIN_IDENTIFIER);
+        $this->logger = $this->getLogger(Plugin::PLUGIN_IDENTIFIER);
     }
 
     /**
