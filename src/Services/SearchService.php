@@ -3,12 +3,10 @@
 namespace Findologic\PluginPlentymarketsApi\Services;
 
 use Findologic\PluginPlentymarketsApi\Api\Request\RequestBuilder;
-use Findologic\PluginPlentymarketsApi\Api\Request\Request;
 use Findologic\PluginPlentymarketsApi\Api\Response\ResponseParser;
 use Findologic\PluginPlentymarketsApi\Api\Client;
 use Findologic\PluginPlentymarketsApi\Constants\Plugin;
 use Findologic\PluginPlentymarketsApi\Exception\AliveException;
-use Ceres\Helper\ExternalSearch;
 use Plenty\Log\Contracts\LoggerContract;
 use Plenty\Plugin\Http\Request as HttpRequest;
 use Plenty\Plugin\Log\LoggerFactory;
