@@ -4,7 +4,8 @@ namespace Findologic\PluginPlentymarketsApi\Api\Response;
 
 use Findologic\PluginPlentymarketsApi\Api\Response\Parser\FiltersParser;
 use Findologic\PluginPlentymarketsApi\Constants\Plugin;
-use Plenty\Plugin\Log\LoggerFactory;
+use Plenty\Plugin\Log\Loggable;
+use Plenty\Log\Contracts\LoggerContract;
 
 /**
  * Class ResponseParser
@@ -12,20 +13,22 @@ use Plenty\Plugin\Log\LoggerFactory;
  */
 class ResponseParser
 {
+    use Loggable;
+
     /**
      * @var FiltersParser
      */
     protected $filtersParser;
 
     /**
-     * @var \Plenty\Log\Contracts\LoggerContract
+     * @var LoggerContract
      */
     protected $logger;
 
-    public function __construct(FiltersParser $filtersParser, LoggerFactory $loggerFactory)
+    public function __construct(FiltersParser $filtersParser)
     {
         $this->filtersParser = $filtersParser;
-        $this->logger = $loggerFactory->getLogger(Plugin::PLUGIN_NAMESPACE, Plugin::PLUGIN_IDENTIFIER);
+        $this->logger = $this->getLogger(Plugin::PLUGIN_IDENTIFIER);
     }
 
     /**

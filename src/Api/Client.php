@@ -5,8 +5,8 @@ namespace Findologic\PluginPlentymarketsApi\Api;
 use Findologic\PluginPlentymarketsApi\Constants\Plugin;
 use Findologic\PluginPlentymarketsApi\Api\Request\Request;
 use Plenty\Modules\Plugin\Libs\Contracts\LibraryCallContract;
-use Plenty\Plugin\Log\LoggerFactory;
-use HTTP_Request2;
+use Plenty\Plugin\Log\Loggable;
+use Plenty\Log\Contracts\LoggerContract;
 
 /**
  * Class Client
@@ -14,12 +14,14 @@ use HTTP_Request2;
  */
 class Client
 {
+    use Loggable;
+
     const DEFAULT_CONNECTION_TIME_OUT = 5;
 
     const DEFAULT_TIME_OUT = 10;
 
     /**
-     * @var LoggerFactory
+     * @var LoggerContract
      */
     protected $logger;
 
@@ -28,9 +30,9 @@ class Client
      */
     protected $libraryCallContract;
 
-    public function __construct(LoggerFactory $loggerFactory, LibraryCallContract $libraryCallContract)
+    public function __construct(LibraryCallContract $libraryCallContract)
     {
-        $this->logger = $loggerFactory->getLogger(Plugin::PLUGIN_NAMESPACE, Plugin::PLUGIN_IDENTIFIER);
+        $this->logger = $this->getLogger(Plugin::PLUGIN_IDENTIFIER);
         $this->libraryCallContract = $libraryCallContract;
     }
 

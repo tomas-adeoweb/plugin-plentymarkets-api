@@ -7,9 +7,9 @@ use Findologic\PluginPlentymarketsApi\Api\Response\ResponseParser;
 use Findologic\PluginPlentymarketsApi\Api\Client;
 use Findologic\PluginPlentymarketsApi\Constants\Plugin;
 use Findologic\PluginPlentymarketsApi\Exception\AliveException;
-use Plenty\Log\Contracts\LoggerContract;
 use Plenty\Plugin\Http\Request as HttpRequest;
 use Plenty\Plugin\Log\Loggable;
+use Plenty\Log\Contracts\LoggerContract;
 
 /**
  * Class SearchService
