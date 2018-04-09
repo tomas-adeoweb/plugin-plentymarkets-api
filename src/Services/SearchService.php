@@ -57,7 +57,7 @@ class SearchService implements SearchServiceInterface
     public function handleSearchQuery($searchQuery, $request)
     {
         try {
-            $this->logger->warning('Use findologic search.');
+            $this->logger->critical('Use findologic search.');
 
             $this->aliveTest();
 

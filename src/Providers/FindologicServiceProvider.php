@@ -40,7 +40,7 @@ class FindologicServiceProvider extends ServiceProvider
 /*        if (!$configRepository->get('findologic.enabled', false)) {
             return;
         }*/
-        $this->getLoggerObject()->warning('Register findologic observers');
+        $this->getLoggerObject()->critical('Register findologic observers');
 
         $eventDispatcher->listen(
             'Ceres.Search.Options',
