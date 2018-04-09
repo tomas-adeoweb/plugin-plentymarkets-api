@@ -26,6 +26,11 @@ class FindologicServiceProvider extends ServiceProvider
      */
     protected $logger = false;
 
+    public function register()
+    {
+
+    }
+
     /**
      * @param Dispatcher $eventDispatcher
      * @param ConfigRepository $configRepository
