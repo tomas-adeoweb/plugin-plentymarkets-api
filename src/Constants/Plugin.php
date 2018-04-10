@@ -1,6 +1,6 @@
 <?php
 
-namespace Findologic\PluginPlentymarketsApi\Constants;
+namespace Findologic\Constants;
 
 /**
  * Class Plugin

@@ -1,9 +1,9 @@
 <?php
 
-namespace Findologic\PluginPlentymarketsApi\Api\Response;
+namespace Findologic\Api\Response;
 
-use Findologic\PluginPlentymarketsApi\Api\Response\Parser\FiltersParser;
-use Findologic\PluginPlentymarketsApi\Constants\Plugin;
+use Findologic\Api\Response\Parser\FiltersParser;
+use Findologic\Constants\Plugin;
 use Plenty\Plugin\Log\Loggable;
 use Plenty\Log\Contracts\LoggerContract;
 

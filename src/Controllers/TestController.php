@@ -1,15 +1,15 @@
 <?php
 
-namespace Findologic\PluginPlentymarketsApi\Controllers;
+namespace Findologic\Controllers;
 
-use Findologic\PluginPlentymarketsApi\Constants\Plugin;
+use Findologic\Constants\Plugin;
 use Plenty\Plugin\Controller;
 use Plenty\Plugin\Templates\Twig;
 use Plenty\Plugin\Log\Loggable;
 
 /**
  * Class TestController
- * @package Findologic\PluginPlentymarketsApi\Controllers
+ * @package Findologic\Controllers
  */
 class TestController extends Controller
 {

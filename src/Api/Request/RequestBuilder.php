@@ -1,10 +1,10 @@
 <?php
 
-namespace Findologic\PluginPlentymarketsApi\Api\Request;
+namespace Findologic\Api\Request;
 
 use Ceres\Helper\ExternalSearch;
-use Findologic\PluginPlentymarketsApi\Constants\Plugin;
-use Findologic\PluginPlentymarketsApi\Api\Client;
+use Findologic\Constants\Plugin;
+use Findologic\Api\Client;
 use Plenty\Plugin\ConfigRepository;
 use Plenty\Plugin\Http\Request as HttpRequest;
 use Plenty\Plugin\Log\Loggable;

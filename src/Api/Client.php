@@ -1,9 +1,9 @@
 <?php
 
-namespace Findologic\PluginPlentymarketsApi\Api;
+namespace Findologic\Api;
 
-use Findologic\PluginPlentymarketsApi\Constants\Plugin;
-use Findologic\PluginPlentymarketsApi\Api\Request\Request;
+use Findologic\Constants\Plugin;
+use Findologic\Api\Request\Request;
 use Plenty\Modules\Plugin\Libs\Contracts\LibraryCallContract;
 use Plenty\Plugin\Log\Loggable;
 use Plenty\Log\Contracts\LoggerContract;

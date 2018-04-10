@@ -1,12 +1,12 @@
 <?php
 
-namespace Findologic\PluginPlentymarketsApi\Services;
+namespace Findologic\Services;
 
-use Findologic\PluginPlentymarketsApi\Api\Request\RequestBuilder;
-use Findologic\PluginPlentymarketsApi\Api\Response\ResponseParser;
-use Findologic\PluginPlentymarketsApi\Api\Client;
-use Findologic\PluginPlentymarketsApi\Constants\Plugin;
-use Findologic\PluginPlentymarketsApi\Exception\AliveException;
+use Findologic\Api\Request\RequestBuilder;
+use Findologic\Api\Response\ResponseParser;
+use Findologic\Api\Client;
+use Findologic\Constants\Plugin;
+use Findologic\Exception\AliveException;
 use Plenty\Plugin\Http\Request as HttpRequest;
 use Plenty\Plugin\Log\Loggable;
 use Plenty\Log\Contracts\LoggerContract;

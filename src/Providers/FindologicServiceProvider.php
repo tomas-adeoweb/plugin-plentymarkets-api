@@ -1,9 +1,9 @@
 <?php
 
-namespace Findologic\PluginPlentymarketsApi\Providers;
+namespace Findologic\Providers;
 
-use Findologic\PluginPlentymarketsApi\Constants\Plugin;
-use Findologic\PluginPlentymarketsApi\Services\SearchService;
+use Findologic\Constants\Plugin;
+use Findologic\Services\SearchService;
 use Ceres\Helper\ExternalSearchOptions;
 use Ceres\Helper\ExternalSearch;
 use Plenty\Plugin\ConfigRepository;
