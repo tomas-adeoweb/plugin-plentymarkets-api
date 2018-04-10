@@ -50,7 +50,7 @@ class Client
                 ['request' => $request]
             );
         } catch (\Exception $e) {
-            $this->logger->warning('Exception while handling search query.');
+            $this->logger->error('Exception while handling search query.');
             $this->logger->logException($e);
             return $response;
         }

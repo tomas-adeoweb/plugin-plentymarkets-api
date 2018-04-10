@@ -71,9 +71,9 @@ class SearchService implements SearchServiceInterface
 
             //TODO: how to handle no results ?
         } catch (AliveException $e) {
-            $this->logger->warning('Findologic server did not responded to alive request.');
+            $this->logger->error('Findologic server did not responded to alive request.');
         } catch (\Exception $e) {
-            $this->logger->warning('Exception while handling search query.');
+            $this->logger->error('Exception while handling search query.');
             $this->logger->logException($e);
         }
     }
