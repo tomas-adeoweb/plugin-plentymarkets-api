@@ -43,11 +43,8 @@ class FindologicServiceProvider extends ServiceProvider
         SearchService $searchService
     ) {
         if (!$configRepository->get(Plugin::CONFIG_ENABLED, false)) {
-            $this->getLoggerObject()->error('Findologic is disabled');
             return;
         }
-
-        $this->getLoggerObject()->error('Register');
 
         $eventDispatcher->listen(
             'Ceres.Search.Options',
