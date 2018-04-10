@@ -57,7 +57,11 @@ class SearchService implements SearchServiceInterface
     public function handleSearchQuery($searchQuery, $request)
     {
         try {
+            $this->logger->critical('Alive test.');
+
             $this->aliveTest();
+
+            $this->logger->critical('Findologic search.');
 
             $apiRequest = $this->requestBuilder->build($request, $searchQuery);
             $results = $this->responseParser->parse($this->client->call($apiRequest));
@@ -80,7 +84,7 @@ class SearchService implements SearchServiceInterface
 
     public function handleSearchOptions($searchOptions, $request)
     {
-        // TODO: Implement handleSearchOptions() method.
+        $this->logger->critical('Findologic handleSearchOptions.');
     }
 
     /**
