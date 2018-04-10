@@ -44,9 +44,10 @@ class FindologicServiceProvider extends ServiceProvider
         Request $request,
         SearchService $searchService
     ) {
-/*        if (!$configRepository->get('findologic.enabled', false)) {
+        /* if (!$configRepository->get('findologic.enabled', false)) {
             return;
         }*/
+
         $this->getLoggerObject()->critical('Register findologic observers');
 
         $eventDispatcher->listen(

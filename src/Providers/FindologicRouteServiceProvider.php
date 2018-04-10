@@ -13,6 +13,6 @@ class FindologicRouteServiceProvider extends RouteServiceProvider
 {
     public function map(Router $router)
     {
-        $router->get('findologic-test','Findologic\PluginPlentymarketsApi\Controllers\TestController@sayHello');
+        $router->get('findologic','Findologic\PluginPlentymarketsApi\Controllers\TestController@sayHello');
     }
 }
