@@ -1,10 +1,10 @@
 {
   "name":"Findologic",
   "description":"Findologic search plugin",
-  "namespace":"Findologic",
+  "namespace":"Findologic\\PluginPlentymarketsApi",
   "author":"AdeoWeb",
   "type":"template",
-  "version": "0.0.021",
+  "version": "0.0.022",
   "serviceProvider":"Findologic\\PluginPlentymarketsApi\\Providers\\FindologicServiceProvider",
   "dependencies": {
     "findologic/http_request2": "2.3.1"
