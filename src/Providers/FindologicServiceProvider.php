@@ -28,6 +28,8 @@ class FindologicServiceProvider extends ServiceProvider
 
     public function register()
     {
+        $this->getLoggerObject()->critical('Register findologic service providers');
+
         $this->getApplication()->register(FindologicRouteServiceProvider::class);
     }
 
