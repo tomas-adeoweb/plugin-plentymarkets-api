@@ -28,8 +28,6 @@ class FindologicServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->getLoggerObject()->critical('Register findologic service providers');
-
         $this->getApplication()->register(FindologicRouteServiceProvider::class);
     }
 
@@ -44,11 +42,9 @@ class FindologicServiceProvider extends ServiceProvider
         Request $request,
         SearchService $searchService
     ) {
-        /* if (!$configRepository->get('findologic.enabled', false)) {
+        if (!$configRepository->get('findologic.enabled', false)) {
             return;
-        }*/
-
-        $this->getLoggerObject()->critical('Register findologic observers');
+        }
 
         $eventDispatcher->listen(
             'Ceres.Search.Options',

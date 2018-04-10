@@ -17,8 +17,6 @@ class TestController extends Controller
 
     public function sayHello(Twig $twig):string
     {
-        $this->getLogger(Plugin::PLUGIN_IDENTIFIER)->critical('Test Findologic');
-
         return $twig->render('Findologic::content.hello');
     }
 }

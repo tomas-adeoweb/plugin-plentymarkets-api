@@ -57,8 +57,6 @@ class SearchService implements SearchServiceInterface
     public function handleSearchQuery($searchQuery, $request)
     {
         try {
-            $this->logger->critical('Use findologic search.');
-
             $this->aliveTest();
 
             $apiRequest = $this->requestBuilder->build($request, $searchQuery);
@@ -66,6 +64,8 @@ class SearchService implements SearchServiceInterface
             $productsIds = $results->getProductsIds();
 
             if (!empty($productsIds) && is_array($productsIds)) {
+                $this->logger->critical('Set search results.');
+
                 $searchQuery->setResults($productsIds);
             }
 
