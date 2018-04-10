@@ -4,8 +4,8 @@
   "namespace":"Findologic",
   "author":"AdeoWeb",
   "type":"template",
-  "version": "0.0.020",
-  "serviceProvider":"Findologic\\Providers\\FindologicServiceProvider",
+  "version": "0.0.021",
+  "serviceProvider":"Findologic\\PluginPlentymarketsApi\\Providers\\FindologicServiceProvider",
   "dependencies": {
     "findologic/http_request2": "2.3.1"
   }
