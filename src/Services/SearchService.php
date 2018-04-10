@@ -57,8 +57,6 @@ class SearchService implements SearchServiceInterface
     public function handleSearchQuery($searchQuery, $request)
     {
         try {
-            $this->logger->critical('Alive test.');
-
             $this->aliveTest();
 
             $this->logger->critical('Findologic search.');
@@ -75,7 +73,7 @@ class SearchService implements SearchServiceInterface
 
             //TODO: how to handle no results ?
         } catch (AliveException $e) {
-            $this->logger->error('Findologic server did not responded to alive request.');
+            $this->logger->error('Findologic server did not responded to alive request. ' . $e->getMessage());
         } catch (\Exception $e) {
             $this->logger->error('Exception while handling search query.');
             $this->logger->logException($e);
