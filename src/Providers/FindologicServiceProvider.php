@@ -42,7 +42,7 @@ class FindologicServiceProvider extends ServiceProvider
         Request $request,
         SearchService $searchService
     ) {
-        if (!$configRepository->get('findologic.enabled', false)) {
+        if (!$configRepository->get(Plugin::CONFIG_ENABLED, false)) {
             $this->getLoggerObject()->error('Findologic is disabled');
             return;
         }
