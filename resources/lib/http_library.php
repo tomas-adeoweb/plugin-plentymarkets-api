@@ -6,6 +6,8 @@ use Findologic\Constants\Plugin;
 $request = SdkRestApi::getParam('request');
 $logger = SdkRestApi::getParam('logger');
 
+$logger->error('Call the http library.');
+
 $httpRequest = new \HTTP_Request2();
 
 $httpRequest->setUrl($request->getRequestUrl());
