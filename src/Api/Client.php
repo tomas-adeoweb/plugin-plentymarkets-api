@@ -58,6 +58,6 @@ class Client
             return $response;
         }
 
-        return (string)$response;
+        return $response;
     }
 }
