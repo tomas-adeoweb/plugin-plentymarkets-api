@@ -101,8 +101,9 @@ class ResponseParser
             $query['foundWordCount'] = $data->query->foundWordCount->__toString();
 
             //TODO: check limit structure in valid response as it is missing data in example response
-            $query['first'] = $data->query->attributes()->first->__toString();
-            $query['limit'] = $data->query->attributes()->limit->__toString();
+
+            $query['first'] = $data->query['first']->__toString();
+            $query['limit'] = $data->query['limit']->__toString();
         }
 
         return $query;
