@@ -92,6 +92,7 @@ class SearchService implements SearchServiceInterface
     {
         $request = $this->requestBuilder->buildAliveRequest();
         $response = $this->client->call($request);
+        $response[] = 'Test';
 
         $this->logger->critical('Alive test.', $response);
 
