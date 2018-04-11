@@ -60,7 +60,7 @@ class ResponseParser
     }
 
     /**
-     * @param string $xmlString
+     * @param $xmlString
      * @return \SimpleXMLElement
      */
     public function loadXml($xmlString = '')
