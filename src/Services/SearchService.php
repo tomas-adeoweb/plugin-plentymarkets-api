@@ -3,6 +3,7 @@
 namespace Findologic\Services;
 
 use Findologic\Api\Request\RequestBuilder;
+use Findologic\Api\Response\Response;
 use Findologic\Api\Response\ResponseParser;
 use Findologic\Api\Client;
 use Findologic\Constants\Plugin;
@@ -39,7 +40,7 @@ class SearchService implements SearchServiceInterface
      */
     protected $logger;
 
-    protected $results = false;
+    protected $results;
 
     public function __construct(
         Client $client,
@@ -65,6 +66,7 @@ class SearchService implements SearchServiceInterface
             if (!empty($productsIds) && is_array($productsIds)) {
                 $searchQuery->setResults($productsIds);
             }
+
             //TODO: how to handle no results ?
         } catch (\Exception $e) {
             $this->logger->error('Exception while handling search query.');
@@ -90,11 +92,11 @@ class SearchService implements SearchServiceInterface
 
     /**
      * @param HttpRequest $request
-     * @return bool|\Findologic\Api\Response\Response
+     * @return \Findologic\Api\Response\Response
      */
     protected function search($request)
     {
-        if ($this->results) {
+        if ($this->results instanceof  Response) {
             return $this->results;
         }
 
