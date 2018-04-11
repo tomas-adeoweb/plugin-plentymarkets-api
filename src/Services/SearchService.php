@@ -39,7 +39,7 @@ class SearchService implements SearchServiceInterface
      */
     protected $logger;
 
-    protected $response = 'Test';
+    protected $results = false;
 
     public function __construct(
         Client $client,
@@ -59,30 +59,55 @@ class SearchService implements SearchServiceInterface
     public function handleSearchQuery($searchQuery, $request)
     {
         try {
-            $this->logger->error('Same object ' . $this->response);
-            $this->aliveTest();
-
-            $apiRequest = $this->requestBuilder->build($request, $searchQuery);
-            $results = $this->responseParser->parse($this->client->call($apiRequest));
+            $results = $this->search($request);
             $productsIds = $results->getProductsIds();
 
             if (!empty($productsIds) && is_array($productsIds)) {
                 $searchQuery->setResults($productsIds);
             }
             //TODO: how to handle no results ?
-        } catch (AliveException $e) {
-            $this->logger->error('Findologic server did not responded to alive request. ' . $e->getMessage());
         } catch (\Exception $e) {
             $this->logger->error('Exception while handling search query.');
             $this->logger->logException($e);
         }
     }
 
+    /**
+     * @param $searchOptions
+     * @param HttpRequest $request
+     */
     public function handleSearchOptions($searchOptions, $request)
     {
-        $this->response = 'Testas';
+        try {
+            $results = $this->search($request);
 
-        $this->logger->critical('Findologic handleSearchOptions.');
+            //TODO: set filters
+        } catch (\Exception $e) {
+            $this->logger->error('Exception while handling search options.');
+            $this->logger->logException($e);
+        }
+    }
+
+    /**
+     * @param HttpRequest $request
+     * @return bool|\Findologic\Api\Response\Response
+     */
+    protected function search($request)
+    {
+        if ($this->results) {
+            return $this->results;
+        }
+
+        try {
+            $this->aliveTest();
+
+            $apiRequest = $this->requestBuilder->build($request);
+            $this->results = $this->responseParser->parse($this->client->call($apiRequest));
+        } catch (AliveException $e) {
+            $this->logger->error('Findologic server did not responded to alive request. ' . $e->getMessage());
+        }
+
+        return $this->results;
     }
 
     /**

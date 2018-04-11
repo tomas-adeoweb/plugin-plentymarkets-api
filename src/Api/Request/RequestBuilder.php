@@ -41,14 +41,13 @@ class RequestBuilder
 
     /**
      * @param HttpRequest $httpRequest
-     * @param ExternalSearch|null $searchQuery
      * @return bool|Request
      */
-    public function build($httpRequest, $searchQuery = null)
+    public function build($httpRequest)
     {
         $request = $this->createRequestObject();
         $request = $this->setDefaultValues($request);
-        $request = $this->setSearchParams($request, $httpRequest, $searchQuery);
+        $request = $this->setSearchParams($request, $httpRequest);
 
         return $request;
     }
@@ -108,16 +107,13 @@ class RequestBuilder
     /**
      * @param Request $request
      * @param HttpRequest $httpRequest
-     * @param ExternalSearch $searchQuery
      * @return Request
      */
-    public function setSearchParams($request, $httpRequest, $searchQuery)
+    public function setSearchParams($request, $httpRequest)
     {
-        if ($searchQuery->searchString) {
-            $request->setParam('query', $searchQuery->searchString);
-        }
-
         $parameters = $httpRequest->all();
+
+        $this->logger->error('Parameters ', $parameters);
 
         if (isset($parameters[Plugin::API_PARAMETER_ATTRIBUTES])) {
             $attributes = $parameters[Plugin::API_PARAMETER_ATTRIBUTES];
