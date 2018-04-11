@@ -43,7 +43,9 @@ class ResponseParser
         $response = pluginApp(Response::class);
 
         try {
+            //TODO: remove after development, used for debugging
             $this->logger->error('Findologic response', $responseData);
+
             $data = $this->loadXml($responseData);
             $response->setData(Response::DATA_SERVERS, $this->parseServers($data));
             $response->setData(Response::DATA_QUERY, $this->parseQuery($data));
