@@ -62,8 +62,13 @@ class SearchService implements SearchServiceInterface
         try {
             $results = $this->search($request);
             $productsIds = $results->getProductsIds();
-            $productsIds = [129, 122];
+
+            if ($request->get('productIds', false)) {
+                $productsIds = explode('-', $request->get('productIds'));
+            }
+
             if (!empty($productsIds) && is_array($productsIds)) {
+                $this->logger->error('Set results', $productsIds);
                 $searchQuery->setResults($productsIds);
             }
 
