@@ -52,12 +52,13 @@ class Client
                     'logger' => $this->logger
                 ]
             );
+            $this->logger->error('Response', $response);
         } catch (\Exception $e) {
             $this->logger->error('Exception while handling search query.');
             $this->logger->logException($e);
             return $response;
         }
 
-        return $response;
+        return (string)$response;
     }
 }
