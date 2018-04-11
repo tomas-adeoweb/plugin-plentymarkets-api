@@ -47,10 +47,7 @@ class Client
         try {
             $response = $this->libraryCallContract->call(
                 'Findologic::http_library',
-                [
-                    'request' => $request,
-                    'logger' => $this->logger
-                ]
+                ['request' => $this->requestToArray($request)]
             );
             $this->logger->error('Response', $response);
         } catch (\Exception $e) {
@@ -60,5 +57,20 @@ class Client
         }
 
         return (string)$response;
+    }
+
+    /**
+     * @param Request $request
+     * @return array
+     */
+    protected function requestToArray($request)
+    {
+        $requestArray = [];
+
+        $requestArray['url'] = $request->getRequestUrl();
+        $requestArray['connect_timeout'] = $request->getConfiguration(Plugin::API_CONFIGURATION_KEY_CONNECTION_TIME_OUT) ?? self::DEFAULT_CONNECTION_TIME_OUT;
+        $requestArray['timeout'] = $request->getConfiguration(Plugin::API_CONFIGURATION_KEY_TIME_OUT) ?? self::DEFAULT_CONNECTION_TIME_OUT;
+
+        return $requestArray;
     }
 }
