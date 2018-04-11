@@ -39,6 +39,8 @@ class SearchService implements SearchServiceInterface
      */
     protected $logger;
 
+    protected $response = 'Test';
+
     public function __construct(
         Client $client,
         RequestBuilder $requestBuilder,
@@ -57,20 +59,16 @@ class SearchService implements SearchServiceInterface
     public function handleSearchQuery($searchQuery, $request)
     {
         try {
+            $this->logger->error('Same object ' . $this->response);
             $this->aliveTest();
-
-            $this->logger->critical('Findologic search.');
 
             $apiRequest = $this->requestBuilder->build($request, $searchQuery);
             $results = $this->responseParser->parse($this->client->call($apiRequest));
             $productsIds = $results->getProductsIds();
 
             if (!empty($productsIds) && is_array($productsIds)) {
-                $this->logger->critical('Set search results.');
-
                 $searchQuery->setResults($productsIds);
             }
-
             //TODO: how to handle no results ?
         } catch (AliveException $e) {
             $this->logger->error('Findologic server did not responded to alive request. ' . $e->getMessage());
@@ -82,6 +80,8 @@ class SearchService implements SearchServiceInterface
 
     public function handleSearchOptions($searchOptions, $request)
     {
+        $this->response = 'Testas';
+
         $this->logger->critical('Findologic handleSearchOptions.');
     }
 
@@ -92,8 +92,6 @@ class SearchService implements SearchServiceInterface
     {
         $request = $this->requestBuilder->buildAliveRequest();
         $response = $this->client->call($request);
-
-        $this->logger->critical('Alive test.', $response);
 
         if ($response != Plugin::API_ALIVE_RESPONSE_BODY) {
             throw new AliveException('Server is not alive!');
