@@ -63,12 +63,13 @@ class SearchService implements SearchServiceInterface
             $results = $this->search($request);
             $productsIds = $results->getProductsIds();
 
+            //TODO: remove, used for testing during development
             if ($request->get('productIds', false)) {
                 $productsIds = explode('-', $request->get('productIds'));
             }
 
             if (!empty($productsIds) && is_array($productsIds)) {
-                $this->logger->error('Set results', $productsIds);
+                $this->logger->error('Results', $productsIds);
                 $searchQuery->setResults($productsIds);
             }
 
@@ -112,6 +113,7 @@ class SearchService implements SearchServiceInterface
             $this->results = $this->responseParser->parse($this->client->call($apiRequest));
         } catch (AliveException $e) {
             $this->logger->error('Findologic server did not responded to alive request. ' . $e->getMessage());
+            throw $e;
         }
 
         return $this->results;
