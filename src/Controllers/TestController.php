@@ -1,6 +1,6 @@
 <?php
 
-namespace Findologic\Controllers;
+namespace Findologic\Ceres\Controllers;
 
 use Findologic\Constants\Plugin;
 use Plenty\Plugin\Controller;
@@ -9,7 +9,7 @@ use Plenty\Plugin\Log\Loggable;
 
 /**
  * Class TestController
- * @package Findologic\Controllers
+ * @package Findologic\Ceres\Controllers
  */
 class TestController extends Controller
 {

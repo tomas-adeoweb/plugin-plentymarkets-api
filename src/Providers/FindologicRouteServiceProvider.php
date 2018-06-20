@@ -1,13 +1,13 @@
 <?php
 
-namespace Findologic\Providers;
+namespace Findologic\Ceres\Providers;
 
 use Plenty\Plugin\RouteServiceProvider;
 use Plenty\Plugin\Routing\Router;
 
 /**
  * Class FindologicRouteServiceProvider
- * @package Findologic\Providers
+ * @package Findologic\Ceres\Providers
  */
 class FindologicRouteServiceProvider extends RouteServiceProvider
 {

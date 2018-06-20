@@ -1,10 +1,10 @@
 <?php
 
-namespace Findologic\Api\Response\Parser;
+namespace Findologic\Ceres\Api\Response\Parser;
 
 /**
  * Class FiltersParser
- * @package Findologic\Api\Response\Parser
+ * @package Findologic\Ceres\Api\Response\Parser
  */
 class FiltersParser
 {

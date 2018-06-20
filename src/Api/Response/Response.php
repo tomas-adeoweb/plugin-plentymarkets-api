@@ -1,10 +1,10 @@
 <?php
 
-namespace Findologic\Api\Response;
+namespace Findologic\Ceres\Api\Response;
 
 /**
  * Class Response
- * @package Findologic\Api\Response
+ * @package Findologic\Ceres\Api\Response
  */
 class Response
 {

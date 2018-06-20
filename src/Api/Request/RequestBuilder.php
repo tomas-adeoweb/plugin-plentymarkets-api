@@ -1,10 +1,10 @@
 <?php
 
-namespace Findologic\Api\Request;
+namespace Findologic\Ceres\Api\Request;
 
 use Ceres\Helper\ExternalSearch;
-use Findologic\Constants\Plugin;
-use Findologic\Api\Client;
+use Findologic\Ceres\Constants\Plugin;
+use Findologic\Ceres\Api\Client;
 use Plenty\Plugin\ConfigRepository;
 use Plenty\Plugin\Http\Request as HttpRequest;
 use Plenty\Plugin\Log\Loggable;
@@ -12,7 +12,7 @@ use Plenty\Log\Contracts\LoggerContract;
 
 /**
  * Class RequestBuilder
- * @package Findologic\Api\Request
+ * @package Findologic\Ceres\Api\Request
  */
 class RequestBuilder
 {

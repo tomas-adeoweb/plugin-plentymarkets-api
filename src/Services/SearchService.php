@@ -1,20 +1,20 @@
 <?php
 
-namespace Findologic\Services;
+namespace Findologic\Ceres\Services;
 
-use Findologic\Api\Request\RequestBuilder;
-use Findologic\Api\Response\Response;
-use Findologic\Api\Response\ResponseParser;
-use Findologic\Api\Client;
-use Findologic\Constants\Plugin;
-use Findologic\Exception\AliveException;
+use Findologic\Ceres\Api\Request\RequestBuilder;
+use Findologic\Ceres\Api\Response\Response;
+use Findologic\Ceres\Api\Response\ResponseParser;
+use Findologic\Ceres\Api\Client;
+use Findologic\Ceres\Constants\Plugin;
+use Findologic\Ceres\Exception\AliveException;
 use Plenty\Plugin\Http\Request as HttpRequest;
 use Plenty\Plugin\Log\Loggable;
 use Plenty\Log\Contracts\LoggerContract;
 
 /**
  * Class SearchService
- * @package Findologic\Services
+ * @package Findologic\Ceres\Services
  */
 class SearchService implements SearchServiceInterface
 {

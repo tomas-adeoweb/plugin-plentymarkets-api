@@ -1,15 +1,15 @@
 <?php
 
-namespace Findologic\Api\Response;
+namespace Findologic\Ceres\Api\Response;
 
-use Findologic\Api\Response\Parser\FiltersParser;
-use Findologic\Constants\Plugin;
+use Findologic\Ceres\Api\Response\Parser\FiltersParser;
+use Findologic\Ceres\Constants\Plugin;
 use Plenty\Plugin\Log\Loggable;
 use Plenty\Log\Contracts\LoggerContract;
 
 /**
  * Class ResponseParser
- * @package Findologic\Api\Response
+ * @package Findologic\Ceres\Api\Response
  */
 class ResponseParser
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace Findologic\Providers;
+namespace Findologic\Ceres\Providers;
 
-use Findologic\Constants\Plugin;
-use Findologic\Services\SearchService;
+use Findologic\Ceres\Constants\Plugin;
+use Findologic\Ceres\Services\SearchService;
 use Ceres\Helper\ExternalSearchOptions;
 use Ceres\Helper\ExternalSearch;
 use Plenty\Plugin\ConfigRepository;
@@ -15,7 +15,7 @@ use Plenty\Log\Contracts\LoggerContract;
 
 /**
  * Class FindologicServiceProvider
- * @package Findologic\Providers
+ * @package Findologic\Ceres\Providers
  */
 class FindologicServiceProvider extends ServiceProvider
 {

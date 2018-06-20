@@ -1,16 +1,16 @@
 <?php
 
-namespace Findologic\Api;
+namespace Findologic\Ceres\Api;
 
-use Findologic\Constants\Plugin;
-use Findologic\Api\Request\Request;
+use Findologic\Ceres\Constants\Plugin;
+use Findologic\Ceres\Api\Request\Request;
 use Plenty\Modules\Plugin\Libs\Contracts\LibraryCallContract;
 use Plenty\Plugin\Log\Loggable;
 use Plenty\Log\Contracts\LoggerContract;
 
 /**
  * Class Client
- * @package Findologic\Api
+ * @package Findologic\Ceres\Api
  */
 class Client
 {

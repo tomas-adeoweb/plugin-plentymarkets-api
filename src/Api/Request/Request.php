@@ -1,12 +1,12 @@
 <?php
 
-namespace Findologic\Api\Request;
+namespace Findologic\Ceres\Api\Request;
 
-use Findologic\Constants\Plugin;
+use Findologic\Ceres\Constants\Plugin;
 
 /**
  * Class Request
- * @package Findologic\Api\Request
+ * @package Findologic\Ceres\Api\Request
  */
 class Request
 {

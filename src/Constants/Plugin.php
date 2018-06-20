@@ -1,10 +1,10 @@
 <?php
 
-namespace Findologic\Constants;
+namespace Findologic\Ceres\Constants;
 
 /**
  * Class Plugin
- * @package Findologic\Constants
+ * @package Findologic\Ceres\Constants
  */
 class Plugin
 {
