@@ -55,6 +55,8 @@ class Client
             return $response;
         }
 
+        $this->logger->error('Findologic', $response);
+
         return (string)$response;
     }
 
