@@ -43,7 +43,7 @@ class ResponseParser
         $response = pluginApp(Response::class);
 
         try {
-            //TODO: remove after development, used for debugging
+            //TODO: remove after testing
             $this->logger->error('Findologic response', $responseData);
 
             $data = $this->loadXml($responseData);

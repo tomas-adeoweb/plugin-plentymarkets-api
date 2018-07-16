@@ -113,7 +113,7 @@ class RequestBuilder
     {
         $parameters = $httpRequest->all();
 
-        //TODO: remove after development, used for debugging
+        //TODO: remove after testing
         $this->logger->error('Parameters ', $parameters);
 
         $request->setParam('query', $parameters['query'] ?? '');

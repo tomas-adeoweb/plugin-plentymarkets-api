@@ -55,6 +55,7 @@ class Client
             return $response;
         }
 
+        //TODO: remove after testing
         $this->logger->warning('Findologic', $response);
         $this->logger->critical('Findologic', $response);
         $this->logger->error('Findologic', $response);
