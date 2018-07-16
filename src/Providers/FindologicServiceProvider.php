@@ -43,9 +43,9 @@ class FindologicServiceProvider extends ServiceProvider
         SearchService $searchService
     ) {
         //TODO: remove after testing
-        $this->logger->warning('Add Findologic');
-        $this->logger->critical('Add Findologic');
-        $this->logger->error('Add Findologic');
+        $this->getLoggerObject()->warning('Add Findologic');
+        $this->getLoggerObject()->critical('Add Findologic');
+        $this->getLoggerObject()->error('Add Findologic');
 
         if (!$configRepository->get(Plugin::CONFIG_ENABLED, false)) {
             return;
