@@ -4,7 +4,7 @@
   "namespace":"Findologic\\Ceres",
   "author":"AdeoWeb",
   "type":"template",
-  "version": "0.0.040",
+  "version": "0.0.041",
   "serviceProvider":"Findologic\\Ceres\\Providers\\FindologicServiceProvider",
   "dependencies": {
     "findologic/http_request2": "2.3.1"
