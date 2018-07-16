@@ -38,7 +38,7 @@ class Client
 
     /**
      * @param Request $request
-     * @return string|bool
+     * @return mixed
      */
     public function call(Request $request)
     {
@@ -55,9 +55,11 @@ class Client
             return $response;
         }
 
+        $this->logger->warning('Findologic', $response);
+        $this->logger->critical('Findologic', $response);
         $this->logger->error('Findologic', $response);
 
-        return (string)$response;
+        return $response;
     }
 
     /**

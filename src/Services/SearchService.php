@@ -127,9 +127,7 @@ class SearchService implements SearchServiceInterface
         $request = $this->requestBuilder->buildAliveRequest();
         $response = $this->client->call($request);
 
-        $this->logger->error($response);
-
-        if ($response != Plugin::API_ALIVE_RESPONSE_BODY) {
+        if (!in_array(Plugin::API_ALIVE_RESPONSE_BODY, $response)) {
             throw new AliveException('Server is not alive!');
         }
     }
