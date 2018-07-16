@@ -8,7 +8,7 @@ namespace Findologic\Ceres\Constants;
  */
 class Plugin
 {
-    const PLUGIN_NAMESPACE = 'Findologic';
+    const PLUGIN_NAMESPACE = 'Findologic\Ceres';
     const PLUGIN_IDENTIFIER = 'findologic-plugin-api';
 
     const API_OUTPUT_ADAPTER = 'XML_2.0';
