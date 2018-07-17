@@ -61,7 +61,7 @@ class SearchService implements SearchServiceInterface
     {
         try {
             $results = $this->search($request);
-            $productsIds = $results->getProductsIds();
+            $productsIds = $results->getProductMainVariationsIds();
 
             //TODO: remove, used for testing during development
             if ($request->get('productIds', false)) {
