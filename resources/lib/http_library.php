@@ -1,8 +1,8 @@
 <?php
 
-use Findologic\Ceres\Constants\Plugin;
+use Findologic\Constants\Plugin;
 
-/** @var \Findologic\Ceres\Api\Request\Request $request */
+/** @var \Findologic\Api\Request\Request $request */
 $request = SdkRestApi::getParam('request');
 
 $httpRequest = new \HTTP_Request2();

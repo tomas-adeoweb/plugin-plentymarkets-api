@@ -1,14 +1,14 @@
 <?php
 
-namespace Findologic\Ceres\Constants;
+namespace Findologic\Constants;
 
 /**
  * Class Plugin
- * @package Findologic\Ceres\Constants
+ * @package FindologicCeres\Constants
  */
 class Plugin
 {
-    const PLUGIN_NAMESPACE = 'Findologic\Ceres';
+    const PLUGIN_NAMESPACE = 'Findologic';
     const PLUGIN_IDENTIFIER = 'findologic-plugin-api';
 
     const API_OUTPUT_ADAPTER = 'XML_2.0';

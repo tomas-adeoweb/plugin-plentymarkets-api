@@ -1,12 +1,12 @@
 <?php
 
-namespace Findologic\Ceres\Services;
+namespace Findologic\Services;
 
 use Plenty\Plugin\Http\Request;
 
 /**
  * Interface SearchServiceInterface
- * @package Findologic\Ceres\Services
+ * @package Findologic\Services
  */
 interface SearchServiceInterface
 {

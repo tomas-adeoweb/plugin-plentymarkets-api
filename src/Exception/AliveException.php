@@ -1,10 +1,10 @@
 <?php
 
-namespace Findologic\Ceres\Exception;
+namespace Findologic\Exception;
 
 /**
  * Class AliveException
- * @package Findologic\Ceres\Exception
+ * @package Findologic\Exception
  */
 class AliveException extends \Exception
 {
