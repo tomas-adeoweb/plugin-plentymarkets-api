@@ -70,8 +70,7 @@ class SearchService implements SearchServiceInterface
 
             if (!empty($productsIds) && is_array($productsIds)) {
                 //TODO: remove after testing
-                $dumpProductsIds = implode(',', $request->get('productIds'));
-                $this->logger->error('Set results.', $dumpProductsIds);
+                $this->logger->error('Set results', $productsIds);
 
                 $searchQuery->setResults($productsIds);
             }
