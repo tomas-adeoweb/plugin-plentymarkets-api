@@ -11,6 +11,8 @@ use Findologic\Exception\AliveException;
 use Plenty\Plugin\Http\Request as HttpRequest;
 use Plenty\Plugin\Log\Loggable;
 use Plenty\Log\Contracts\LoggerContract;
+use Ceres\Helper\ExternalSearch;
+use Ceres\Helper\ExternalSearchOptions;
 
 /**
  * Class SearchService
@@ -19,6 +21,8 @@ use Plenty\Log\Contracts\LoggerContract;
 class SearchService implements SearchServiceInterface
 {
     use Loggable;
+
+    CONST DEFAULT_ITEMS_PER_PAGE = 25;
 
     /**
      * @var Client
@@ -54,7 +58,7 @@ class SearchService implements SearchServiceInterface
     }
 
     /**
-     * @param $searchQuery
+     * @param ExternalSearch $searchQuery
      * @param HttpRequest $request
      */
     public function handleSearchQuery($searchQuery, $request)
@@ -83,13 +87,15 @@ class SearchService implements SearchServiceInterface
     }
 
     /**
-     * @param $searchOptions
+     * @param ExternalSearchOptions $searchOptions
      * @param HttpRequest $request
      */
     public function handleSearchOptions($searchOptions, $request)
     {
         try {
             $results = $this->search($request);
+
+            $searchOptions->setItemsPerPage($results->getResultsPerPage(), self::DEFAULT_ITEMS_PER_PAGE);
 
             //TODO: set filters
         } catch (\Exception $e) {
