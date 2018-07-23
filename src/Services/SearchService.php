@@ -95,7 +95,7 @@ class SearchService implements SearchServiceInterface
         try {
             $results = $this->search($request);
 
-            $searchOptions->setItemsPerPage($results->getResultsPerPage(), self::DEFAULT_ITEMS_PER_PAGE);
+            //$searchOptions->setItemsPerPage($results->getResultsPerPage(), self::DEFAULT_ITEMS_PER_PAGE);
 
             //TODO: set filters
         } catch (\Exception $e) {
