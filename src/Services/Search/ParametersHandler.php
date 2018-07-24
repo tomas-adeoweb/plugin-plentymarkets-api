@@ -2,6 +2,7 @@
 
 namespace Findologic\Services\Search;
 
+use Ceres\Config\CeresConfig;
 use Ceres\Helper\ExternalSearchOptions;
 use Findologic\Api\Response\Response;
 use Plenty\Plugin\Http\Request as HttpRequest;
@@ -12,6 +13,21 @@ use Plenty\Plugin\Http\Request as HttpRequest;
  */
 class ParametersHandler
 {
+    /**
+     * @var CeresConfig
+     */
+    protected $config;
+
+    /**
+     * @var bool|array
+     */
+    protected $itemsPerPageOptions = [];
+
+    public function __construct()
+    {
+        $this->config = pluginApp(CeresConfig::class);
+    }
+
     /**
      * @param ExternalSearchOptions $search
      * @param Response $searchResults
@@ -34,8 +50,8 @@ class ParametersHandler
         //TODO: translations and maybe sort options labels should be configurable ?
         return [
             '' => 'Revelance',
-            'price ASC' => 'Price',
-            'price DESC' => 'Price',
+            'price ASC' => 'Price ⬆',
+            'price DESC' => 'Price ⬇',
             'label ASC' => 'A-Z',
             'salesfrequency DESC' => 'Top sellers',
             'dateadded DESC' => 'Newest'
@@ -48,15 +64,21 @@ class ParametersHandler
      */
     public function getCurrentSorting($request)
     {
-        return $request->get('sort', '');
+        return $request->get('sorting', '');
     }
 
     /**
      * @return array
      */
-    public function getItemPerPageOptions()
+    public function getItemsPerPageOptions()
     {
-        return [];
+        if (empty($this->itemsPerPageOptions)) {
+            foreach ($this->config->pagination->rowsPerPage as $rowPerPage) {
+                $this->itemsPerPageOptions[] = $rowPerPage * $this->config->pagination->columnsPerPage;
+            }
+        }
+
+        return $this->itemsPerPageOptions;
     }
 
     /**
@@ -65,6 +87,8 @@ class ParametersHandler
      */
     public function getCurrentItemsPerPage($request)
     {
-        return $request
+        $itemsPerPage = $this->getItemsPerPageOptions();
+
+        return $request->get('items', $itemsPerPage[0]);
     }
 }
