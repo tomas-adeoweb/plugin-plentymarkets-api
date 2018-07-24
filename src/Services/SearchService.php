@@ -8,6 +8,7 @@ use Findologic\Api\Response\ResponseParser;
 use Findologic\Api\Client;
 use Findologic\Constants\Plugin;
 use Findologic\Exception\AliveException;
+use Findologic\Services\Search\ParametersHandler;
 use Plenty\Plugin\Http\Request as HttpRequest;
 use Plenty\Plugin\Log\Loggable;
 use Plenty\Log\Contracts\LoggerContract;
@@ -40,6 +41,11 @@ class SearchService implements SearchServiceInterface
     protected $responseParser;
 
     /**
+     * @var ParametersHandler
+     */
+    protected $searchParametersHandler;
+
+    /**
      * @var LoggerContract
      */
     protected $logger;
@@ -49,11 +55,13 @@ class SearchService implements SearchServiceInterface
     public function __construct(
         Client $client,
         RequestBuilder $requestBuilder,
-        ResponseParser $responseParser
+        ResponseParser $responseParser,
+        ParametersHandler $searchParametersHandler
     ) {
         $this->client = $client;
         $this->requestBuilder = $requestBuilder;
         $this->responseParser = $responseParser;
+        $this->searchParametersHandler = $searchParametersHandler;
         $this->logger = $this->getLogger(Plugin::PLUGIN_IDENTIFIER);
     }
 
@@ -95,8 +103,7 @@ class SearchService implements SearchServiceInterface
         try {
             $results = $this->search($request);
 
-            //$searchOptions->setItemsPerPage($results->getResultsPerPage(), self::DEFAULT_ITEMS_PER_PAGE);
-
+            $searchOptions = $this->searchParametersHandler->handlePaginationAndSorting($searchOptions, $results, $request);
             //TODO: set filters
         } catch (\Exception $e) {
             $this->logger->error('Exception while handling search options.');

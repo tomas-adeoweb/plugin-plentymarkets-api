@@ -60,13 +60,6 @@ class FindologicServiceProvider extends ServiceProvider
                 $searchService->handleSearchQuery($searchQuery, $request);
             }
         );
-
-        $eventDispatcher->listen(
-            'IO.init.templates',
-            function (Partial $partial) {
-                $partial->set('Search.Filter', 'Findologic::content.filters');
-            }
-        );
     }
 
     /**
