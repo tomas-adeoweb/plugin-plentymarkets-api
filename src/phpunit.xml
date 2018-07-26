@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <phpunit
-        bootstrap="test/autoload.php"
+        bootstrap="./tests/autoload.php"
         colors="true"
         convertErrorsToExceptions="true"
         convertNoticesToExceptions="true"
@@ -12,8 +12,8 @@
         syntaxCheck="true">
 
     <testsuite name="Tests">
-        <directory>./test</directory>
-        <exclude>./src/Mocks</exclude>
+        <directory>./tests</directory>
+        <exclude>./Mocks</exclude>
     </testsuite>
     <logging>
         <log type="coverage-html" target="build/coverage" title="Findologic Plugin Plentymarkets Api"

@@ -32,7 +32,7 @@ class ParametersHandler
     public function handlePaginationAndSorting($search, $searchResults, $request)
     {
         $search->setSortingOptions($this->getSortingOptions(), $this->getCurrentSorting($request));
-        $search->setItemsPerPage($this->getItemsPerPageOptions(), $this->getCurrentItemsPerPage($request));
+        $search->setItemsPerPage($search->getItemsPerPage(), $this->getCurrentItemsPerPage($request, $search));
 
         return $search;
     }
@@ -63,36 +63,12 @@ class ParametersHandler
     }
 
     /**
-     * @return array
-     */
-    public function getItemsPerPageOptions()
-    {
-        if (empty($this->itemsPerPageOptions)) {
-            foreach ($this->getConfig()->pagination->rowsPerPage as $rowPerPage) {
-                $this->itemsPerPageOptions[] = $rowPerPage * $this->getConfig()->pagination->columnsPerPage;
-            }
-        }
-
-        return $this->itemsPerPageOptions;
-    }
-
-    /**
      * @param HttpRequest $request
+     * @param ExternalSearchOptions $search
      * @return string
      */
-    public function getCurrentItemsPerPage($request)
+    public function getCurrentItemsPerPage($request, $search)
     {
-        $itemsPerPage = $this->getItemsPerPageOptions();
-
-        return $request->get('items', $itemsPerPage[0]);
-    }
-
-    public function getConfig()
-    {
-        if (!$this->config) {
-            $this->config = pluginApp(CeresConfig::class);
-        }
-
-        return $this->config;
+        return $request->get('items', $search->getDefaultItemsPerPage());
     }
 }

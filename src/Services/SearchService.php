@@ -10,7 +10,7 @@ use Findologic\Constants\Plugin;
 use Findologic\Exception\AliveException;
 use Findologic\Services\Search\ParametersHandler;
 use Plenty\Plugin\Http\Request as HttpRequest;
-use Plenty\Plugin\Log\Loggable;
+use Plenty\Plugin\Log\LoggerFactory;
 use Plenty\Log\Contracts\LoggerContract;
 use Ceres\Helper\ExternalSearch;
 use Ceres\Helper\ExternalSearchOptions;
@@ -21,8 +21,6 @@ use Ceres\Helper\ExternalSearchOptions;
  */
 class SearchService implements SearchServiceInterface
 {
-    use Loggable;
-
     CONST DEFAULT_ITEMS_PER_PAGE = 25;
 
     /**
@@ -56,13 +54,14 @@ class SearchService implements SearchServiceInterface
         Client $client,
         RequestBuilder $requestBuilder,
         ResponseParser $responseParser,
-        ParametersHandler $searchParametersHandler
+        ParametersHandler $searchParametersHandler,
+        LoggerFactory $loggerFactory
     ) {
         $this->client = $client;
         $this->requestBuilder = $requestBuilder;
         $this->responseParser = $responseParser;
         $this->searchParametersHandler = $searchParametersHandler;
-        $this->logger = $this->getLogger(Plugin::PLUGIN_IDENTIFIER);
+        $this->logger = $loggerFactory->getLogger(Plugin::PLUGIN_NAMESPACE, Plugin::PLUGIN_IDENTIFIER);
     }
 
     /**

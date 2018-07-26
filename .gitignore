@@ -3,3 +3,4 @@ build/
 .idea/
 src/index.php
 src/Mocks
+src/phpunit
