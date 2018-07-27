@@ -68,6 +68,10 @@ class ParametersHandler
      */
     public function getItemsPerPage($search)
     {
+        if (!empty($search->getItemsPerPage())) {
+            return $search->getItemsPerPage();
+        }
+
         if (empty($this->itemsPerPage)) {
             foreach ($this->config->pagination->rowsPerPage as $rowPerPage) {
                 $this->itemsPerPage[] = $rowPerPage * $this->config->pagination->columnsPerPage;
