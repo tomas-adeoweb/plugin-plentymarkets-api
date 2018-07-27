@@ -102,12 +102,7 @@ class SearchService implements SearchServiceInterface
         try {
             $results = $this->search($request);
 
-            //TODO: remove after testing
-            $this->logger->error('Items per page 1', (string)$searchOptions->getItemsPerPage());
-            $this->logger->error('Default items per page 1', (string)$searchOptions->getDefaultItemsPerPage());
-
             $searchOptions = $this->searchParametersHandler->handlePaginationAndSorting($searchOptions, $results, $request);
-            $this->logger->error('Result items per page 3', $searchOptions->getItemsPerPage());
 
             //TODO: set filters
         } catch (\Exception $e) {
