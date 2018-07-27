@@ -38,7 +38,7 @@ class ResponseParser
         /**
          * @var Response $response
          */
-        $response = pluginApp(Response::class);
+        $response = $this->createResponseObject();
 
         try {
             //TODO: remove after testing
@@ -67,6 +67,11 @@ class ResponseParser
     public function loadXml($xmlString = '')
     {
         return simplexml_load_string($xmlString);
+    }
+
+    public function createResponseObject()
+    {
+        return pluginApp(Response::class);
     }
 
     /**
