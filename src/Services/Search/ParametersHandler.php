@@ -21,7 +21,7 @@ class ParametersHandler
     /**
      * @var bool|array
      */
-    protected $itemsPerPageOptions = [];
+    protected $itemsPerPage = [];
 
     /**
      * @param ExternalSearchOptions $search
@@ -32,7 +32,7 @@ class ParametersHandler
     public function handlePaginationAndSorting($search, $searchResults, $request)
     {
         $search->setSortingOptions($this->getSortingOptions(), $this->getCurrentSorting($request));
-        $search->setItemsPerPage($search->getItemsPerPage(), $this->getCurrentItemsPerPage($request, $search));
+        $search->setItemsPerPage($this->getItemsPerPage($search), $this->getCurrentItemsPerPage($request, $search));
 
         return $search;
     }
@@ -63,12 +63,38 @@ class ParametersHandler
     }
 
     /**
+     * @param ExternalSearchOptions $search
+     * @return array
+     */
+    public function getItemsPerPage($search)
+    {
+        if (!empty($search->getItemsPerPage())) {
+            return $search->getItemsPerPage();
+        }
+
+        if (empty($this->itemsPerPage)) {
+            foreach ($this->config->pagination->rowsPerPage as $rowPerPage) {
+                $this->itemsPerPage[] = $rowPerPage * $this->config->pagination->columnsPerPage;
+            }
+        }
+
+        return $this->itemsPerPage;
+    }
+
+    /**
      * @param HttpRequest $request
      * @param ExternalSearchOptions $search
      * @return string
      */
     public function getCurrentItemsPerPage($request, $search)
     {
-        return $request->get('items', $search->getDefaultItemsPerPage());
+        $currentItemsPerPage = $request->get('items', $search->getDefaultItemsPerPage());
+
+        if (!$currentItemsPerPage) {
+            $itemsPerPageOptions = $this->getItemsPerPage($search);
+            $currentItemsPerPage = $itemsPerPageOptions[0];
+        }
+
+        return $currentItemsPerPage;
     }
 }
