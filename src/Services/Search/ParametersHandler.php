@@ -23,9 +23,13 @@ class ParametersHandler
      */
     protected $itemsPerPage = [];
 
-    public function __construct(CeresConfig $config)
+    public function getConfig()
     {
-        $this->config = $config;
+        if (!$this->config) {
+            $this->config = pluginApp(CeresConfig::class);
+        }
+
+        return $this->config;
     }
 
     /**
@@ -78,8 +82,8 @@ class ParametersHandler
         }
 
         if (empty($this->itemsPerPage)) {
-            foreach ($this->config->pagination->rowsPerPage as $rowPerPage) {
-                $this->itemsPerPage[] = $rowPerPage * $this->config->pagination->columnsPerPage;
+            foreach ($this->getConfig()->pagination->rowsPerPage as $rowPerPage) {
+                $this->itemsPerPage[] = $rowPerPage * $this->getConfig()->pagination->columnsPerPage;
             }
         }
 
