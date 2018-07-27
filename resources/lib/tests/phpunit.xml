@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <phpunit
-        bootstrap="../resources/lib/tests/autoload.php"
+        bootstrap="./autoload.php"
         colors="true"
         convertErrorsToExceptions="true"
         convertNoticesToExceptions="true"
@@ -12,7 +12,7 @@
         syntaxCheck="true">
 
     <testsuite name="Tests">
-        <directory>../resources/lib/tests</directory>
+        <directory>./</directory>
         <exclude>./Mocks</exclude>
     </testsuite>
     <logging>
