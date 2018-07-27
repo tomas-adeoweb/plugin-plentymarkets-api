@@ -23,6 +23,11 @@ class ParametersHandler
      */
     protected $itemsPerPage = [];
 
+    public function __construct(CeresConfig $config)
+    {
+        $this->config = $config;
+    }
+
     /**
      * @param ExternalSearchOptions $search
      * @param Response $searchResults
