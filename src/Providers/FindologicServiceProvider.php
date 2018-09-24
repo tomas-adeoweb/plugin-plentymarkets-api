@@ -47,6 +47,8 @@ class FindologicServiceProvider extends ServiceProvider
             return;
         }
 
+        $logger = $this->getLoggerObject();
+
         $eventDispatcher->listen(
             'Ceres.Search.Options',
             function (ExternalSearchOptions $searchOptions) use ($searchService, $request) {
@@ -61,8 +63,9 @@ class FindologicServiceProvider extends ServiceProvider
             }
         );
 
-        $eventDispatcher->listen('Search.Filter', function (TemplateContainer $templateContainer)
+        $eventDispatcher->listen('Search.Filter', function (TemplateContainer $templateContainer) use ($logger)
         {
+            $logger->error('Override template');
             $templateContainer->setTemplate('Findologic::content.filters');
             return false;
         }, 0);
