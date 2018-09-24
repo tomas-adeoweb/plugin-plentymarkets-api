@@ -13,6 +13,7 @@ use Plenty\Plugin\ServiceProvider;
 use Plenty\Plugin\Log\Loggable;
 use Plenty\Log\Contracts\LoggerContract;
 use IO\Helper\TemplateContainer;
+use IO\Extensions\Functions\Partial;
 
 /**
  * Class FindologicServiceProvider
@@ -63,12 +64,20 @@ class FindologicServiceProvider extends ServiceProvider
             }
         );
 
-        $eventDispatcher->listen('Search.Filter', function (TemplateContainer $templateContainer) use ($logger)
-        {
-            $logger->error('Override template');
-            $templateContainer->setTemplate('Findologic::content.filters');
-            return false;
+        $eventDispatcher->listen('IO.init.templates', function(Partial $partial) use ($logger) {
+            $logger->error('Override init template');
+            $partial->set('Search.Filter', 'Findologic::content.filters');
         }, 0);
+
+        $eventDispatcher->listen(
+            'Search.Filter',
+            function (TemplateContainer $templateContainer) use ($logger) {
+                $logger->error('Override template');
+                $templateContainer->setTemplate('Findologic::content.filters');
+                return false;
+            },
+            0
+        );
     }
 
     /**
