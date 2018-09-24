@@ -12,7 +12,7 @@ use Plenty\Plugin\Http\Request;
 use Plenty\Plugin\ServiceProvider;
 use Plenty\Plugin\Log\Loggable;
 use Plenty\Log\Contracts\LoggerContract;
-use IO\Extensions\Functions\Partial;
+use IO\Helper\TemplateContainer;
 
 /**
  * Class FindologicServiceProvider
@@ -60,6 +60,12 @@ class FindologicServiceProvider extends ServiceProvider
                 $searchService->handleSearchQuery($searchQuery, $request);
             }
         );
+
+        $eventDispatcher->listen('Search.Filter', function (TemplateContainer $templateContainer)
+        {
+            $templateContainer->setTemplate('Findologic::content.filters');
+            return false;
+        }, 0);
     }
 
     /**
